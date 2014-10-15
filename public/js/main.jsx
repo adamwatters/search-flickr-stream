@@ -18,13 +18,18 @@ var PicBoard = React.createClass({
 
 var SearchBar = React.createClass({
 
-	handleClick: function(){
-		getPictures(this.props.newPictures);	
+	handleClick: function(event){
+		event.preventDefault();
+		var searchEntry = this.refs.searchEntry.getDOMNode().value.trim();
+		getPictures(this.props.newPictures, searchEntry);	
 	},
 
 
 	render: function(){
-		return <button onClick={this.handleClick} >searchbar</button>
+		return <form>
+					<button onClick={this.handleClick} >searchbar</button>
+					<input type="text" placeholder="search..." ref="searchEntry"></input>
+				</form>
 	}
 });
 
@@ -49,9 +54,8 @@ var initialPics = ["https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_mr7X
 
 React.renderComponent(<App picArray={initialPics} />, document.getElementById("reactContainer"));
 
-getPictures();
+getPictures(function(){return}, "fire");
 
-// $(getPictures(React.renderComponent, <App picArray={initialPics} />, document.getElementById("reactContainer")));
 
 
 

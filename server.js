@@ -21,26 +21,15 @@ var callback = function(response) {
 app.use('/', express.static(__dirname + '/public'));
 
 app.get("/pics", function(request, response){
-  console.log(request);
-
-  console.log(response);
+  var queryString = request.query.searchTerm;
+  var pathString = "/services/feeds/photos_public.gne?format=json&nojsoncallback=1&tags=" + queryString
   var options = {
     host: "api.flickr.com",
-    path: "/services/feeds/photos_public.gne?format=json&nojsoncallback=1"
+    path: pathString
   };
   http.request(options, callback).end();
 	response.write(pictureString);
 	response.end();
-});
-
-app.get("/picsBySearch", function(request, response){
-  var options = {
-    host: "api.flickr.com",
-    path: "/services/feeds/photos_public.gne?format=json&nojsoncallback=1"
-  };
-  http.request(options, callback).end();
-  response.write(pictureString);
-  response.end();
 });
 
 app.listen(8000);

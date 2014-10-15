@@ -2,13 +2,15 @@
 
 var pictures = [];
 
-var getPictures = function(callback, component, target) {
+var getPictures = function(callback, searchTerm) {
+
+	var urlString = "/pics?searchTerm="+searchTerm;
 
 	pictures = [];
 
 	$.ajax({
 	  	dataType: "text",
-	  	url: "/pics",
+	  	url: urlString,
 	  	success: function(data){
 	  		data = data.replace(/\\'/g,"'");
 	  		data = JSON.parse(data);
@@ -23,7 +25,7 @@ var getPictures = function(callback, component, target) {
 	  		if (callback === undefined){
 	  			return;
 	  		}; 
-	  		callback(component, target);
+	  		callback();
 	  	}
 	});
 };
@@ -53,6 +55,8 @@ var getPicturesBySearch = function(callback, component, target) {
 	  	}
 	});
 }
+
+
 
 
 
