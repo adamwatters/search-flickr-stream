@@ -20,8 +20,7 @@ var SearchBar = React.createClass({
 
 	handleClick: function(event){
 		event.preventDefault();
-		var searchEntry = this.refs.searchEntry.getDOMNode().value.trim();
-		getPictures(this.props.newPictures, searchEntry);	
+		getPictures(this.props.newPictures, this.refs.searchEntry.getDOMNode().value.trim());	
 	},
 
 
@@ -35,9 +34,9 @@ var SearchBar = React.createClass({
 
 var App = React.createClass({
 
-	newPictures: function() {
+	newPictures: function(newPictures) {
 		this.replaceProps({picArray: []});
-		this.replaceProps({picArray: pictures});
+		this.replaceProps({picArray: newPictures});
 	},
 
 	render: function() {
@@ -50,11 +49,9 @@ var App = React.createClass({
 	}
 });
 
-var initialPics = ["https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_mr7XPzj2zAW9CscYtQz044YHrUu_g6BrFL26gyxX-2mG1rt1"]
+React.renderComponent(<App picArray={["http://goo.gl/V2VNd7"]} />, document.getElementById("reactContainer"));
 
-React.renderComponent(<App picArray={initialPics} />, document.getElementById("reactContainer"));
 
-getPictures(function(){return}, "fire");
 
 
 

@@ -28,5 +28,5 @@ app.get("/pics", function(request, response){
   request.end();
 });
 
-app.listen(7000);
-console.log("server listening on port 7000");
+app.listen(8000);
+console.log("server listening on port 8000");

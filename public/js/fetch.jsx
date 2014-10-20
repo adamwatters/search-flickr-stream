@@ -1,12 +1,10 @@
 /** @jsx React.DOM */
 
-var pictures = [];
-
 var getPictures = function(callback, searchTerm) {
 
 	var urlString = "/pics?searchTerm="+searchTerm;
 
-	pictures = [];
+	var pictures = [];
 
 	$.ajax({
 	  	dataType: "text",
@@ -25,7 +23,7 @@ var getPictures = function(callback, searchTerm) {
 	  		if (callback === undefined){
 	  			return;
 	  		}; 
-	  		callback();
+	  		callback(pictures);
 	  	}
 	});
 };
